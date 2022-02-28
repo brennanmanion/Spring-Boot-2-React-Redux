@@ -2,18 +2,34 @@ package com.demo.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="projects")
 public class Project {
 
+	public interface Properties
+	{
+		String ID = "id";
+		String PROJECT_NAME = "projectName";
+		String PROJECT_IDENTIFIER = "projectIdentifier";
+		String DESCRIPTION = "description";
+		String START_DATE = "startDate";
+		String END_DATE = "endDate";
+		String CREATED_ON = "createdOn";
+		String UPDATED_ON = "updatedOn";
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = Properties.ID, unique = true, nullable = false)
 	private Long id;
 	private String projectName;
 	private String projectIdentifier;
@@ -27,6 +43,7 @@ public class Project {
 	{
 	}
 	
+//	@Column(name = Properties.ID)
 	public Long getId() {
 		return id;
 	}
@@ -35,6 +52,7 @@ public class Project {
 		this.id = id;
 	}
 
+//	@Column(name = Properties.PROJECT_NAME)
 	public String getProjectName() {
 		return projectName;
 	}
@@ -43,6 +61,7 @@ public class Project {
 		this.projectName = projectName;
 	}
 
+//	@Column(name = Properties.PROJECT_IDENTIFIER)
 	public String getProjectIdentifier() {
 		return projectIdentifier;
 	}
@@ -51,6 +70,7 @@ public class Project {
 		this.projectIdentifier = projectIdentifier;
 	}
 
+//	@Column(name = Properties.DESCRIPTION)
 	public String getDescription() {
 		return description;
 	}
@@ -59,6 +79,7 @@ public class Project {
 		this.description = description;
 	}
 
+//	@Column(name = Properties.START_DATE)
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -67,6 +88,7 @@ public class Project {
 		this.startDate = startDate;
 	}
 
+//	@Column(name = Properties.END_DATE)
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -75,6 +97,7 @@ public class Project {
 		this.endDate = endDate;
 	}
 
+//	@Column(name = Properties.CREATED_ON)
 	public Date getCreatedOn() {
 		return createdOn;
 	}
@@ -83,6 +106,7 @@ public class Project {
 		this.createdOn = createdOn;
 	}
 
+//	@Column(name = Properties.UPDATED_ON)
 	public Date getUpdatedOn() {
 		return updatedOn;
 	}

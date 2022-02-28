@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="brennan" id="1">
+        <createTable tableName="projects">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+        </createTable>        
+    </changeSet>    
+	<changeSet author="brennan" id="2">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="projectName" type="varchar(255)"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="3">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="projectIdentifier" type="varchar(255)"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="4">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="description" type="varchar(255)"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="5">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="startDate" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="6">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="endDate" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="7">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="createdOn" type="DATETIME"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="brennan" id="8">
+		<comment>initialization</comment>
+		<addColumn tableName="projects">
+			<column name="updatedOn" type="DATETIME"/>
+		</addColumn>
+	</changeSet>		
+                          
+</databaseChangeLog>
