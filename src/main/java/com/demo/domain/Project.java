@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="projects")
@@ -26,15 +30,31 @@ public class Project {
 		String CREATED_ON = "createdOn";
 		String UPDATED_ON = "updatedOn";
 	}
+
+	// NOT BLANK
+	private static final String NOT_BLANK_PROJECT_NAME = "Project name is required";
+	private static final String NOT_BLANK_PROJECT_IDENTIFIER = "Project identifier is required";
+	private static final String NOT_BLANK_DESCRIPTION = "Description is required";
+	
+	// SIZE
+	private static final String SIZE_PROJECT_IDENTIFIER = "Project identifier must be between 4 and 5 characters";
+	
+	// MIN
+	private static final int MIN_PROJECT_IDENTIFIER = 4;
+	
+	// MAX	
+	private static final int MAX_PROJECT_IDENTIFIER = 5;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@Column(name = Properties.ID, unique = true, nullable = false)
 	private Long id;
+	
 	private String projectName;
 	private String projectIdentifier;
-	private String description;
-	private Date startDate;
+	
+	private String description;	
+	private Date startDate;	
 	private Date endDate;
 	private Date createdOn;
 	private Date updatedOn;
@@ -53,6 +73,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.PROJECT_NAME)
+	@NotBlank(message = NOT_BLANK_PROJECT_NAME)
 	public String getProjectName() {
 		return projectName;
 	}
@@ -62,6 +83,9 @@ public class Project {
 	}
 
 //	@Column(name = Properties.PROJECT_IDENTIFIER)
+	@Column(updatable = false, unique = true)
+	@NotBlank(message = NOT_BLANK_PROJECT_IDENTIFIER)
+	@Size(min = MIN_PROJECT_IDENTIFIER, max = MAX_PROJECT_IDENTIFIER, message = SIZE_PROJECT_IDENTIFIER)	
 	public String getProjectIdentifier() {
 		return projectIdentifier;
 	}
@@ -71,6 +95,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.DESCRIPTION)
+	@NotBlank(message = NOT_BLANK_DESCRIPTION)	
 	public String getDescription() {
 		return description;
 	}
@@ -80,6 +105,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.START_DATE)
+	@JsonFormat(pattern = "yyyy-mm-dd")	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -89,6 +115,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.END_DATE)
+	@JsonFormat(pattern = "yyyy-mm-dd")	
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -98,6 +125,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.CREATED_ON)
+	@JsonFormat(pattern = "yyyy-mm-dd")	
 	public Date getCreatedOn() {
 		return createdOn;
 	}
@@ -107,6 +135,7 @@ public class Project {
 	}
 
 //	@Column(name = Properties.UPDATED_ON)
+	@JsonFormat(pattern = "yyyy-mm-dd")	
 	public Date getUpdatedOn() {
 		return updatedOn;
 	}
